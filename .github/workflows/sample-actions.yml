@@ -1,0 +1,40 @@
+name: Sample Repro Actions
+on:
+  workflow_dispatch:
+    inputs:
+      ip:
+        required: true
+        type: string
+        description: "IP Address"
+      workers:
+        required: true
+        type: string
+        description: "Number of workers"
+      requests:
+        required: true
+        type: string
+        description: "Number of requests"
+jobs:
+  sample_test:
+    defaults:
+      run:
+        working-directory: src
+    name: Sample Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout Repository
+      - uses: actions/setup-node@v2
+        name: Setup Node.js 16
+        with:
+          node-version: 16
+      - run: |
+          npm i
+        name: Install dependencies
+      - run: |
+          node index.js
+        name: Run script
+        env:
+          NUM_WORKERS: ${{ github.event.inputs.workers }}
+          SERVER_IP: ${{ github.event.inputs.ip }}
+          NUM_REQUESTS: ${{ github.event.inputs.requests }}
