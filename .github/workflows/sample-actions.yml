@@ -22,3 +22,11 @@ jobs:
       - name: Get Timezone 2
         run: |
           echo "The timezone is $(cat /etc/timezone)"
+      - name: Get Timezone 3
+        run: |
+          echo "The timezone is $(sudo timedatectl | grep "Time zone" | awk '{print $3}')"
+      - name: Get Timezone 4
+        run: |
+          echo "The timezone is $(timedatectl | grep "Time zone" | awk '{print $3}')"
+
+
