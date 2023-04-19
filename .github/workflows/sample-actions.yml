@@ -13,9 +13,6 @@ on:
         description: "Number of requests"
 jobs:
   sample_test:
-    defaults:
-      run:
-        working-directory: src
     name: Sample Test
     runs-on: ubuntu-latest
     steps:
