@@ -32,7 +32,7 @@ jobs:
           npm i
         name: Install dependencies
       - run: |
-          node index.js
+          echo "The timezone is $TZ"
         name: Run script
         env:
           NUM_WORKERS: ${{ github.event.inputs.workers }}
